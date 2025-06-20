@@ -30,13 +30,14 @@ export const ImageBody = styled.Image`
 
 export const Footer = styled.View`
   width: 100%;
-
   padding-left: 42px;
   padding-right: 42px;
   align-items: center;
   gap: 16px;
-  margin-top: 16px;
+  margin-top: -16px;
   padding-bottom: 64px;
+
+  z-index: 2;
 `;
 
 export const Title = styled.Text`
