@@ -26,7 +26,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
 
       <Stack>
         <Stack.Screen name="(app)/index" options={{ headerShown: false }} />
