@@ -34,6 +34,8 @@ export default function RootLayout() {
           name="(onboarding)/index"
           options={{ headerShown: false }}
         />
+
+        <Stack.Screen name="(sign-in)/index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>

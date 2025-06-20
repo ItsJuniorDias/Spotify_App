@@ -5,13 +5,14 @@ import { ContentLogo, ImageLogo, Button, FakeView } from "./styles";
 
 interface ButtonProps {
   isButton?: boolean;
+  onPress: () => void;
 }
 
-export function Header({ isButton }: ButtonProps) {
+export function Header({ isButton, onPress }: ButtonProps) {
   return (
     <ContentLogo>
       {isButton ? (
-        <Button>
+        <Button onPress={onPress}>
           <SimpleLineIcons name="arrow-left" size={14} color="white" />
         </Button>
       ) : (

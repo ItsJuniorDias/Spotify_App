@@ -3,11 +3,10 @@ import styled from "styled-components/native";
 export const ContentLogo = styled.View`
   padding-top: 64px;
   align-items: center;
-
-  /* background-color: red; */
   flex-direction: row;
   justify-content: space-between;
   padding-left: 24px;
+  padding-right: 24px;
 `;
 
 export const ImageLogo = styled.Image`

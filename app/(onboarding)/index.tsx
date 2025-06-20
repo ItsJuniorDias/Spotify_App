@@ -14,8 +14,11 @@ import {
   Description,
 } from "./styles";
 import { ButtonComponent, Header } from "@/components";
+import { useRouter } from "expo-router";
 
 export default function OnboardingScreen() {
+  const navigation = useRouter();
+
   return (
     <Container>
       <Header />
@@ -42,7 +45,10 @@ export default function OnboardingScreen() {
             reprehenderit elit laborum.
           </Description>
 
-          <ButtonComponent title="Get started" />
+          <ButtonComponent
+            onPress={() => navigation.push("/(sign-in)")}
+            title="Get started"
+          />
         </Footer>
       </ContentBody>
     </Container>
