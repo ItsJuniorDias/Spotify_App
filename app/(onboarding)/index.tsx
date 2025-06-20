@@ -3,28 +3,22 @@ import { Platform, StyleSheet } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
 
-import logo from "../../assets/images/logo.png";
 import image_body from "../../assets/images/image_body.png";
 
 import {
   Container,
-  ContentLogo,
-  ImageLogo,
   ImageBody,
   ContentBody,
   Footer,
   Title,
   Description,
-  Button,
-  TextButton,
 } from "./styles";
+import { ButtonComponent, Header } from "@/components";
 
 export default function OnboardingScreen() {
   return (
     <Container>
-      <ContentLogo>
-        <ImageLogo source={logo} />
-      </ContentLogo>
+      <Header />
 
       <ContentBody>
         <LinearGradient
@@ -48,9 +42,7 @@ export default function OnboardingScreen() {
             reprehenderit elit laborum.
           </Description>
 
-          <Button>
-            <TextButton>Get Started</TextButton>
-          </Button>
+          <ButtonComponent title="Get started" />
         </Footer>
       </ContentBody>
     </Container>
