@@ -1,9 +1,13 @@
+import { Alert, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 
-import { auth } from "../../firebaseConfig";
+import { db } from "../../firebaseConfig";
 
 import { ButtonComponent, Header, InputComponent } from "@/components";
+
+import { colors } from "@/theme";
 
 import {
   Container,
@@ -13,62 +17,79 @@ import {
   ContentText,
   ButtonRegister,
 } from "./styles";
-import {
-  ActivityIndicator,
-  ActivityIndicatorComponent,
-  Alert,
-  TouchableOpacity,
-} from "react-native";
-import { useEffect, useState } from "react";
-import { colors } from "@/theme";
 
 export default function SignInScreen() {
   const [value, onChangeValue] = useState({
+    id: "",
+    name: "",
     email: "",
     password: "",
+    repeatPassword: "",
   });
 
   const [loading, setLoading] = useState(false);
 
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [secureTextRepeatPassword, setSecureTextRepeatPassword] =
+    useState(true);
 
   const [error, setError] = useState({
+    errorName: false,
     errorEmail: false,
     errorPassword: false,
+    errorRepeatPassword: false,
   });
 
   const router = useRouter();
 
   const handleSubmit = async () => {
-    if (value.email === "" && value.password === "") {
+    if (
+      value.name === "" &&
+      value.email === "" &&
+      value.password === "" &&
+      value.repeatPassword === ""
+    ) {
       setError((prevState) => ({
         ...prevState,
+        errorName: true,
         errorEmail: true,
         errorPassword: true,
+        errorRepeatPassword: true,
       }));
     } else {
       setError((prevState) => ({
         ...prevState,
+        errorName: false,
         errorEmail: false,
         errorPassword: false,
+        errorRepeatPassword: false,
       }));
 
       setLoading(true);
 
-      signInWithEmailAndPassword(auth, value.email, value.password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-
-          console.log(user, "USER");
-
-          router.push("/(tabs)");
-
+      addDoc(collection(db, "users"), {
+        id: "",
+        name: value.name,
+        email: value.email,
+        password: value.password,
+      })
+        .then((response) => {
           setLoading(false);
+
+          setDoc(
+            doc(db, "users", response.id),
+            {
+              id: response.id,
+            },
+            { merge: true }
+          );
+
+          Alert.alert("Document written with ID: ", response.id);
         })
         .catch((error) => {
           setLoading(false);
 
-          Alert.alert("Firebase Error", error.message);
+          Alert.alert("Error adding document: ", error);
         });
     }
   };
@@ -79,7 +100,7 @@ export default function SignInScreen() {
 
       <Body>
         <ContentText>
-          <Title>Log In</Title>
+          <Title>Register</Title>
 
           <TouchableOpacity>
             <Description color={colors.white}>
@@ -88,6 +109,24 @@ export default function SignInScreen() {
             </Description>
           </TouchableOpacity>
         </ContentText>
+
+        <InputComponent
+          placeholder="Name"
+          value={value.name}
+          onFocus={() =>
+            setError((prevState) => ({
+              ...prevState,
+              errorName: false,
+            }))
+          }
+          onChangeText={(item: string) =>
+            onChangeValue((prevState) => ({
+              ...prevState,
+              name: item,
+            }))
+          }
+          isError={error.errorName}
+        />
 
         <InputComponent
           placeholder="Email"
@@ -128,16 +167,37 @@ export default function SignInScreen() {
           isError={error.errorPassword}
         />
 
+        <InputComponent
+          placeholder="Repeat Password"
+          value={value.repeatPassword}
+          onFocus={() =>
+            setError((prevState) => ({
+              ...prevState,
+              errorRepeatPassword: false,
+            }))
+          }
+          isButtonHide
+          secureTextEntry={secureTextRepeatPassword}
+          setSecureTextEntry={setSecureTextRepeatPassword}
+          onChangeText={(item: string) =>
+            onChangeValue((prevState) => ({
+              ...prevState,
+              repeatPassword: item,
+            }))
+          }
+          isError={error.errorRepeatPassword}
+        />
+
         <ButtonComponent
-          title={"Log In"}
+          title={"Register"}
           onPress={() => handleSubmit()}
           isLoading={loading}
         />
 
-        <ButtonRegister onPress={() => router.push("/(sign-up)")}>
+        <ButtonRegister onPress={() => router.back()}>
           <Description color={colors.white}>
-            don't have an account?
-            <Description color={colors.yellow}> Register</Description>
+            have an account?
+            <Description color={colors.yellow}> Log In</Description>
           </Description>
         </ButtonRegister>
       </Body>
