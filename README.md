@@ -3,8 +3,7 @@
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Evidence
-![Untitled (2)](https://github.com/user-attachments/assets/95015c83-a2ae-4022-9484-6b08febd5df8)
-
+![Untitled (3)](https://github.com/user-attachments/assets/4184df18-5712-4a07-a10c-064e79c7a592)
 
 ## Get started
 
