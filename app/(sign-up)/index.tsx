@@ -1,9 +1,11 @@
 import { Alert, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 
-import { db } from "../../firebaseConfig";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import { auth, db } from "../../firebaseConfig";
 
 import { ButtonComponent, Header, InputComponent } from "@/components";
 
@@ -41,6 +43,16 @@ export default function SignInScreen() {
   });
 
   const router = useRouter();
+
+  const signUp = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, value.email, value.password);
+
+      router.push("/(tabs)");
+    } catch (error: any) {
+      Alert.alert("Sign up failed: " + error.message);
+    }
+  };
 
   const handleSubmit = async () => {
     if (
@@ -83,14 +95,14 @@ export default function SignInScreen() {
             },
             { merge: true }
           );
-
-          Alert.alert("Document written with ID: ", response.id);
         })
         .catch((error) => {
           setLoading(false);
 
           Alert.alert("Error adding document: ", error);
         });
+
+      signUp();
     }
   };
 
