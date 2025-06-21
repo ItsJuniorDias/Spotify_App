@@ -10,11 +10,17 @@ export const Container = styled.ScrollView`
   background-color: ${colors.black};
 `;
 
-export const Body = styled.View`
+export const ContentText = styled.View`
   align-items: center;
+  gap: 16px;
+`;
+
+export const Body = styled.View`
   margin-top: 80px;
   justify-content: center;
   gap: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
 `;
 
 export const Title = styled.Text`
@@ -27,4 +33,5 @@ export const Description = styled.Text<DescriptionProps>`
   font-family: "Montserrat-Regular";
   font-size: 14px;
   color: ${({ isColor }) => (isColor ? colors.primary : colors.white)};
+  margin-bottom: 16px;
 `;
