@@ -1,4 +1,8 @@
 import { useRouter } from "expo-router";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import { auth } from "../../firebaseConfig";
+
 import { ButtonComponent, Header, InputComponent } from "@/components";
 
 import {
@@ -26,7 +30,7 @@ export default function SignInScreen() {
 
   const router = useRouter();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (value.email === "" && value.password === "") {
       setError((prevState) => ({
         ...prevState,
@@ -39,6 +43,16 @@ export default function SignInScreen() {
         errorEmail: false,
         errorPassword: false,
       }));
+
+      signInWithEmailAndPassword(auth, value.email, value.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          console.log(user, "USER");
+        })
+        .catch((error) => {
+          console.log(error.message, "ERROR MESSAGE");
+        });
     }
   };
 
