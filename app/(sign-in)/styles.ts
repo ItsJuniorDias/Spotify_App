@@ -2,7 +2,7 @@ import { colors } from "@/theme";
 import styled from "styled-components/native";
 
 interface DescriptionProps {
-  isColor?: boolean;
+  color?: string;
 }
 
 export const Container = styled.ScrollView`
@@ -32,6 +32,13 @@ export const Title = styled.Text`
 export const Description = styled.Text<DescriptionProps>`
   font-family: "Montserrat-Regular";
   font-size: 14px;
-  color: ${({ isColor }) => (isColor ? colors.primary : colors.white)};
+  color: ${({ color }) => color};
   margin-bottom: 16px;
+`;
+
+export const ButtonRegister = styled.TouchableOpacity`
+  width: 100%;
+
+  align-items: center;
+  margin-top: 32px;
 `;

@@ -1,9 +1,17 @@
 import { useRouter } from "expo-router";
 import { ButtonComponent, Header, InputComponent } from "@/components";
 
-import { Container, Body, Title, Description, ContentText } from "./styles";
+import {
+  Container,
+  Body,
+  Title,
+  Description,
+  ContentText,
+  ButtonRegister,
+} from "./styles";
 import { TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
+import { colors } from "@/theme";
 
 export default function SignInScreen() {
   const [value, onChangeValue] = useState({
@@ -43,9 +51,9 @@ export default function SignInScreen() {
           <Title>Log In</Title>
 
           <TouchableOpacity>
-            <Description>
+            <Description color={colors.white}>
               If You Need Any Support
-              <Description isColor>Click Here</Description>
+              <Description color={colors.primary}> Click Here</Description>
             </Description>
           </TouchableOpacity>
         </ContentText>
@@ -88,6 +96,13 @@ export default function SignInScreen() {
         />
 
         <ButtonComponent title="Log In" onPress={() => handleSubmit()} />
+
+        <ButtonRegister>
+          <Description color={colors.white}>
+            don't have an account?
+            <Description color={colors.yellow}> Register</Description>
+          </Description>
+        </ButtonRegister>
       </Body>
     </Container>
   );
