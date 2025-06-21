@@ -13,7 +13,12 @@ import {
   ContentText,
   ButtonRegister,
 } from "./styles";
-import { TouchableOpacity } from "react-native";
+import {
+  ActivityIndicator,
+  ActivityIndicatorComponent,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 import { useEffect, useState } from "react";
 import { colors } from "@/theme";
 
@@ -22,6 +27,8 @@ export default function SignInScreen() {
     email: "",
     password: "",
   });
+
+  const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState({
     errorEmail: false,
@@ -44,14 +51,22 @@ export default function SignInScreen() {
         errorPassword: false,
       }));
 
+      setLoading(true);
+
       signInWithEmailAndPassword(auth, value.email, value.password)
         .then((userCredential) => {
           const user = userCredential.user;
 
           console.log(user, "USER");
+
+          router.push("/(tabs)");
+
+          setLoading(false);
         })
         .catch((error) => {
-          console.log(error.message, "ERROR MESSAGE");
+          setLoading(false);
+
+          Alert.alert("Firebase Error", error.message);
         });
     }
   };
@@ -109,7 +124,11 @@ export default function SignInScreen() {
           isError={error.errorPassword}
         />
 
-        <ButtonComponent title="Log In" onPress={() => handleSubmit()} />
+        <ButtonComponent
+          title={"Log In"}
+          onPress={() => handleSubmit()}
+          isLoading={loading}
+        />
 
         <ButtonRegister>
           <Description color={colors.white}>

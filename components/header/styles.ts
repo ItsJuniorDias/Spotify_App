@@ -1,3 +1,4 @@
+import { Image } from "expo-image";
 import styled from "styled-components/native";
 
 export const ContentLogo = styled.View`
@@ -9,9 +10,14 @@ export const ContentLogo = styled.View`
   padding-right: 24px;
 `;
 
-export const ImageLogo = styled.Image`
+export const ImageLogo = styled(Image)`
   width: 133px;
   height: 40px;
+`;
+
+export const Icon = styled(Image)`
+  width: 24px;
+  height: 24px;
 `;
 
 export const Button = styled.TouchableOpacity`

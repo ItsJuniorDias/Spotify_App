@@ -3,9 +3,9 @@ import React from "react";
 import { Platform } from "react-native";
 
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { colors } from "@/theme";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -15,10 +15,11 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
-        tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
             position: "absolute",
+            backgroundColor: colors.gray,
+            borderTopWidth: 0,
           },
           default: {},
         }),
@@ -34,11 +35,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="playlist"
         options={{
-          title: "Explore",
+          title: "Playlist",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <IconSymbol size={28} name="play.fill" color={color} />
           ),
         }}
       />
