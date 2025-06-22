@@ -1,11 +1,9 @@
-import { Platform, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 
 import logo from "../../assets/images/logo.png";
 
 import { Container, ImageLogo } from "./styles";
 import { useEffect } from "react";
-
 export default function SplashScreen() {
   const router = useRouter();
 

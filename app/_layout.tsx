@@ -9,6 +9,7 @@ import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { AuthProvider } from "../context/AuthContext";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -25,21 +26,29 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <StatusBar style="light" />
+    <AuthProvider>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <StatusBar style="light" />
 
-      <Stack>
-        <Stack.Screen name="(app)/index" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="(onboarding)/index"
-          options={{ headerShown: false }}
-        />
+        <Stack>
+          <Stack.Screen name="(app)/index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="(onboarding)/index"
+            options={{ headerShown: false }}
+          />
 
-        <Stack.Screen name="(sign-in)/index" options={{ headerShown: false }} />
-        <Stack.Screen name="(sign-up)/index" options={{ headerShown: false }} />
-        <Stack.Screen name="(home)/index" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </ThemeProvider>
+          <Stack.Screen
+            name="(sign-in)/index"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="(sign-up)/index"
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </ThemeProvider>{" "}
+    </AuthProvider>
   );
 }

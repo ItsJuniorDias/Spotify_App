@@ -14,10 +14,17 @@ import {
   Description,
 } from "./styles";
 import { ButtonComponent, Header } from "@/components";
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
+import { useAuth } from "@/context/AuthContext";
 
 export default function OnboardingScreen() {
+  const { user } = useAuth();
+
   const navigation = useRouter();
+
+  if (user) {
+    return <Redirect href="/(tabs)" />;
+  }
 
   return (
     <Container>
