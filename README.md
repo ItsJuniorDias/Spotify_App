@@ -3,7 +3,7 @@
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Evidence
-![Untitled (3)](https://github.com/user-attachments/assets/4184df18-5712-4a07-a10c-064e79c7a592)
+![Untitled (4)](https://github.com/user-attachments/assets/aa73443e-dba8-479f-87c6-9d2a78e538c4)
 
 ## Figma
 - https://www.figma.com/design/1qLZPabuStVSqQJ4ooe9K7/Spotify-Redesign-%7C-UI-Mobile-Redesign--Community-?node-id=36-769&p=f&t=bNwFxmkjEEUhaO5o-0
