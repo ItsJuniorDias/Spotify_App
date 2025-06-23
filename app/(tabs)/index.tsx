@@ -3,6 +3,7 @@ import { Platform, StyleSheet } from "react-native";
 
 import Card from "../(home)/components/card/card";
 import List from "../(home)/components/list/list";
+import SectionArtist from "../(home)/components/section-artist/section-artist";
 
 import { Header } from "@/components";
 
@@ -16,6 +17,8 @@ export default function HomeScreen() {
       <Card />
 
       <List />
+
+      <SectionArtist />
     </Container>
   );
 }
