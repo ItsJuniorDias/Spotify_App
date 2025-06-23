@@ -7,6 +7,7 @@ import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { colors } from "@/theme";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -50,6 +51,15 @@ export default function TabLayout() {
           title: "History",
           tabBarIcon: ({ color }) => (
             <MaterialIcons size={28} name="history" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="perfil"
+        options={{
+          title: "Perfil",
+          tabBarIcon: ({ color }) => (
+            <AntDesign size={28} name="user" color={color} />
           ),
         }}
       />

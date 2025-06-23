@@ -14,7 +14,7 @@ import {
   FakeView,
 } from "./styles";
 
-interface ButtonProps {
+interface HeaderProps {
   title?: string;
   isButton?: boolean;
   onPress?: () => void;
@@ -28,7 +28,7 @@ export function Header({
   onPress,
   onPressSearch,
   onPressSettings,
-}: ButtonProps) {
+}: HeaderProps) {
   return (
     <ContentLogo>
       {isButton ? (
