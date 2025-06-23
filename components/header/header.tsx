@@ -1,13 +1,21 @@
+import { TouchableOpacity } from "react-native";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 
 import logo from "../../assets/images/logo.png";
 import icon_search from "../../assets/images/icon_search.png";
 import icon_settings from "../../assets/images/icon_settings.png";
 
-import { ContentLogo, Icon, ImageLogo, Button, FakeView } from "./styles";
-import { TouchableOpacity } from "react-native";
+import {
+  ContentLogo,
+  Icon,
+  ImageLogo,
+  Title,
+  Button,
+  FakeView,
+} from "./styles";
 
 interface ButtonProps {
+  title: string;
   isButton?: boolean;
   onPress?: () => void;
   onPressSearch?: () => void;
@@ -15,6 +23,7 @@ interface ButtonProps {
 }
 
 export function Header({
+  title,
   isButton,
   onPress,
   onPressSearch,
@@ -38,7 +47,7 @@ export function Header({
         </>
       )}
 
-      <ImageLogo source={logo} />
+      {title ? <Title>{title}</Title> : <ImageLogo source={logo} />}
 
       {onPressSettings ? (
         <TouchableOpacity onPress={onPressSearch}>

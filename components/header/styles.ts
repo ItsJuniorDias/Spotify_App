@@ -1,3 +1,4 @@
+import { colors } from "@/theme";
 import { Image } from "expo-image";
 import styled from "styled-components/native";
 
@@ -13,6 +14,12 @@ export const ContentLogo = styled.View`
 export const ImageLogo = styled(Image)`
   width: 133px;
   height: 40px;
+`;
+
+export const Title = styled.Text`
+  font-family: "Montserrat-Bold";
+  font-size: 24px;
+  color: ${colors.white};
 `;
 
 export const Icon = styled(Image)`
