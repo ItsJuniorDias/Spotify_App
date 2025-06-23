@@ -1,16 +1,16 @@
 import { Image } from "expo-image";
 import { Platform, StyleSheet } from "react-native";
 
-import List from "../(playlist)/components/list/list";
+import List from "../(history)/components/list/list";
 
 import { Header } from "@/components";
 
 import { Container } from "./styles";
 
-export default function Playlistcreen() {
+export default function HistoryScreen() {
   return (
     <Container>
-      <Header title="Playlist" onPressSearch={() => {}} />
+      <Header title="History" onPressSearch={() => {}} />
 
       <List />
     </Container>

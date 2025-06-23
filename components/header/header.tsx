@@ -15,7 +15,7 @@ import {
 } from "./styles";
 
 interface ButtonProps {
-  title: string;
+  title?: string;
   isButton?: boolean;
   onPress?: () => void;
   onPressSearch?: () => void;
