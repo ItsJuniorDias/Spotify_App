@@ -15,6 +15,7 @@ import {
   Thumbnail,
   Title,
 } from "./styles";
+import { router } from "expo-router";
 
 type ItemProps = {
   image: string;
@@ -46,7 +47,7 @@ export default function SectionArtist() {
 
   const Item = ({ image, title, description }: ItemProps) => (
     <>
-      <Content>
+      <Content onPress={() => router.push("/(artist)")}>
         <ContentThumbnail>
           <Thumbnail source={image} />
 

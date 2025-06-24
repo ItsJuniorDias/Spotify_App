@@ -36,7 +36,6 @@ export default function RootLayout() {
             name="(onboarding)/index"
             options={{ headerShown: false }}
           />
-
           <Stack.Screen
             name="(sign-in)/index"
             options={{ headerShown: false }}
@@ -46,6 +45,10 @@ export default function RootLayout() {
             options={{ headerShown: false }}
           />
           <Stack.Screen name="(music)/index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="(artist)/index"
+            options={{ headerShown: false }}
+          />
 
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>
