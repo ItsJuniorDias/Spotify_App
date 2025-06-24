@@ -1,5 +1,5 @@
 import { TextCustom } from "@/components";
-
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import avatar from "../../../../assets/images/alexandre.png";
 
 import {
@@ -9,18 +9,40 @@ import {
   ContentText,
   ContentFollowers,
   ContainerFollowers,
+  Row,
 } from "./styles";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
+import { colors } from "@/theme";
+import { auth } from "@/firebaseConfig";
+import { signOut } from "firebase/auth";
+import { router } from "expo-router";
 
 interface HeaderProps {
   title?: string;
 }
 
 export default function Header({ title }: HeaderProps) {
+  const handleSignOut = async () => {
+    signOut(auth)
+      .then(() => {
+        router.push("/(sign-in)");
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error);
+      });
+  };
+
   return (
     <Container>
       <Content>
-        <TextCustom title="Perfil" fontFamily="bold" fontSize={24} />
+        <Row>
+          <View />
+          <TextCustom title="Perfil" fontFamily="bold" fontSize={24} />
+
+          <TouchableOpacity onPress={() => handleSignOut()}>
+            <MaterialIcons name="logout" size={24} color={colors.white} />
+          </TouchableOpacity>
+        </Row>
 
         <Avatar source={avatar} />
 

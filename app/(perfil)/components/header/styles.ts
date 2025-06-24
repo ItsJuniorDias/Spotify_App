@@ -14,6 +14,15 @@ export const Content = styled.View`
   border-bottom-right-radius: 48px;
 `;
 
+export const Row = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+  padding-left: 24px;
+  padding-right: 24px;
+`;
+
 export const Avatar = styled(Image)`
   width: 96px;
   height: 96px;

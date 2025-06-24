@@ -45,6 +45,7 @@ export default function RootLayout() {
             name="(sign-up)/index"
             options={{ headerShown: false }}
           />
+          <Stack.Screen name="(music)/index" options={{ headerShown: false }} />
 
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         </Stack>

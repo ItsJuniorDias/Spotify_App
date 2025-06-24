@@ -12,11 +12,12 @@ import {
   Name,
   Description,
 } from "./styles";
+import { router } from "expo-router";
 
 export default function Card() {
   return (
     <Container>
-      <Content activeOpacity={0.7}>
+      <Content onPress={() => router.push("/(music)")} activeOpacity={0.7}>
         <ContentText>
           <Title>Popular</Title>
 
