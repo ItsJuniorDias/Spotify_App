@@ -21,13 +21,16 @@ export const Thumbnail = styled(Image)`
 export const ContentText = styled.View`
   width: 100%;
   height: 60px;
-
   margin-top: 24px;
   padding-left: 40px;
   padding-right: 40px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const ContainerText = styled.View`
+  gap: 8px;
 `;
 
 export const ContentPlay = styled.View`

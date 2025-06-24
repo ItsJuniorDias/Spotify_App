@@ -26,7 +26,7 @@ export function ProgressBar({ progress }: ProgressBarProps) {
 
   const translateXInterpolated = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 300], // Altere 300 para a largura máxima da barra
+    outputRange: [0, 300],
   });
 
   return (

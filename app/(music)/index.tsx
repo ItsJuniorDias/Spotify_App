@@ -1,5 +1,7 @@
+import { TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
+import { useAudioPlayer } from "expo-audio";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -13,8 +15,6 @@ import shuffle from "../../assets/images/shuffle.png";
 import { colors } from "@/theme";
 import { Header, TextCustom, ProgressBar } from "@/components";
 
-import { TouchableOpacity, View } from "react-native";
-
 import {
   Container,
   Content,
@@ -23,10 +23,15 @@ import {
   ContentPlay,
   Icon,
   IconPlay,
+  ContainerText,
 } from "./styles";
+
+const audioSource = require("../../assets/audio/sisa_rasa.mp3");
 
 export default function MusicScreen() {
   const [progress, setProgress] = useState(0);
+
+  const player = useAudioPlayer(audioSource);
 
   const router = useRouter();
 
@@ -47,11 +52,11 @@ export default function MusicScreen() {
       </Content>
 
       <ContentText>
-        <View>
+        <ContainerText>
           <TextCustom title="Sisa Rasa" fontFamily="bold" fontSize={24} />
 
           <TextCustom title="Mahalini" fontFamily="semi-bold" fontSize={18} />
-        </View>
+        </ContainerText>
 
         <TouchableOpacity onPress={() => {}}>
           <Ionicons name="heart" size={40} color={colors.primary} />
@@ -69,7 +74,7 @@ export default function MusicScreen() {
           <Icon source={previous} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={() => player.play()}>
           <IconPlay source={play} />
         </TouchableOpacity>
 

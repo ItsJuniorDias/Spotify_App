@@ -22,7 +22,16 @@
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": ["expo-router", ["expo-splash-screen"]],
+    "plugins": [
+      "expo-router",
+      ["expo-splash-screen"],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow this app to access your microphone"
+        }
+      ]
+    ],
     "experiments": {
       "typedRoutes": true
     }
