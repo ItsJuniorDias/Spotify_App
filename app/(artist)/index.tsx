@@ -6,7 +6,7 @@ import tulus_card_1 from "../../assets/images/tulus_card_1.png";
 import tulus_card_2 from "../../assets/images/tulus_card_2.png";
 import tulus_card_3 from "../../assets/images/tulus_card_3.png";
 
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { TextCustom } from "@/components";
 
 import {
@@ -33,6 +33,8 @@ interface ItemProps {
 }
 
 export default function ArtistScreen() {
+  const router = useRouter();
+
   const DATA = [
     {
       id: "1",
@@ -87,10 +89,10 @@ export default function ArtistScreen() {
   );
 
   return (
-    <Container>
+    <Container testID="container_testID">
       <Header>
         <ContentButton>
-          <Button onPress={() => router.back()}>
+          <Button testID="button_testID" onPress={() => router.back()}>
             <SimpleLineIcons name="arrow-left" size={14} color="white" />
           </Button>
         </ContentButton>
