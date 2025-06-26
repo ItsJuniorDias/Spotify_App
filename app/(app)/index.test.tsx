@@ -2,10 +2,34 @@ import { render } from "@testing-library/react-native";
 
 import SplashScreen from "./index";
 
-describe("<SplashScreen />", () => {
-  test("Text renders correctly on SplashScreen", () => {
-    const { getByText } = render(<SplashScreen />);
+jest.mock("expo-router", () => ({
+  useRouter: jest.fn(() => ({
+    push: jest.fn(),
+  })),
+}));
 
-    // getByText("Welcome!");
+jest.useFakeTimers();
+
+describe("<SplashScreen />", () => {
+  const setup = () => render(<SplashScreen />);
+
+  it("should render screen container", () => {
+    const { getByTestId } = setup();
+
+    const container = getByTestId("container_testID");
+
+    jest.runAllTimers();
+
+    expect(container).toBeTruthy();
+  });
+
+  it("should render screen image logo ", () => {
+    const { getByTestId } = setup();
+
+    const container = getByTestId("image_testID");
+
+    jest.runAllTimers();
+
+    expect(container).toBeTruthy();
   });
 });

@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { useRouter } from "expo-router";
 
 import logo from "../../assets/images/logo.png";
 
 import { Container, ImageLogo } from "./styles";
-import { useEffect } from "react";
+
 export default function SplashScreen() {
   const router = useRouter();
 
@@ -14,8 +15,8 @@ export default function SplashScreen() {
   }, [router]);
 
   return (
-    <Container>
-      <ImageLogo source={logo} />
+    <Container testID="container_testID">
+      <ImageLogo testID="image_testID" source={logo} />
     </Container>
   );
 }

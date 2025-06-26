@@ -9,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "test": "jest --coverage=true --changedSince=origin/main"
+    "test": "jest --coverage=true"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
