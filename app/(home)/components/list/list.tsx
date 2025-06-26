@@ -10,7 +10,6 @@ import {
   Thumbnail,
   Name,
   Description,
-  Skeleton,
 } from "./styles";
 
 type ItemProps = {
@@ -23,7 +22,7 @@ export default function List() {
   const fetch = async () => {
     const querySnapshot = await getDocs(collection(db, "today_hits"));
 
-    const dataList = querySnapshot.docs.map((doc) => ({
+    const dataList = (querySnapshot?.docs ?? []).map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
@@ -31,23 +30,19 @@ export default function List() {
     return dataList;
   };
 
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["repoDataToday"],
     queryFn: () => fetch(),
   });
 
   const Item = ({ image, title, description }: ItemProps) => (
     <>
-      {isLoading ? (
-        <Skeleton />
-      ) : (
-        <Content>
-          <Thumbnail source={{ uri: image }} />
-          <Name>{title}</Name>
+      <Content testID="button_testID" onPress={() => {}}>
+        <Thumbnail source={{ uri: image }} />
+        <Name>{title}</Name>
 
-          <Description>{description}</Description>
-        </Content>
-      )}
+        <Description>{description}</Description>
+      </Content>
     </>
   );
 

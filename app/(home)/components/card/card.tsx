@@ -1,6 +1,4 @@
-import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
-
+import { useRouter } from "expo-router";
 import avatar from "../../../../assets/images/avatar.png";
 
 import {
@@ -12,12 +10,16 @@ import {
   Name,
   Description,
 } from "./styles";
-import { router } from "expo-router";
-
 export default function Card() {
+  const router = useRouter();
+
   return (
     <Container>
-      <Content onPress={() => router.push("/(music)")} activeOpacity={0.7}>
+      <Content
+        testID="button_testID"
+        onPress={() => router.push("/(music)")}
+        activeOpacity={0.7}
+      >
         <ContentText>
           <Title>Popular</Title>
 
