@@ -21,6 +21,16 @@ export const Content = styled.TouchableOpacity`
   margin-top: 12px;
 `;
 
+export const Skeleton = styled.View`
+  width: 128px;
+  height: 128px;
+  margin-left: 24px;
+  margin-right: -8px;
+  margin-top: 12px;
+  background-color: ${colors.gray};
+  border-radius: 16px;
+`;
+
 export const Thumbnail = styled(Image)`
   width: 128px;
   height: 128px;

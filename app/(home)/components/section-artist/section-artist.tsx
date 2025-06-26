@@ -1,5 +1,9 @@
 import { FlatList, TouchableOpacity } from "react-native";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
+import { router } from "expo-router";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/firebaseConfig";
+import { useQuery } from "@tanstack/react-query";
 
 import {
   Container,
@@ -11,11 +15,6 @@ import {
   Thumbnail,
   Title,
 } from "./styles";
-import { router } from "expo-router";
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/firebaseConfig";
-import { useQuery } from "@tanstack/react-query";
 
 type ItemProps = {
   id: string;
@@ -32,6 +31,7 @@ export default function SectionArtist() {
       id: doc.id,
       ...doc.data(),
     }));
+
     return dataList;
   };
 

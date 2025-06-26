@@ -1,4 +1,7 @@
 import { FlatList } from "react-native";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/firebaseConfig";
+import { useQuery } from "@tanstack/react-query";
 
 import {
   Container,
@@ -7,6 +10,7 @@ import {
   Thumbnail,
   Name,
   Description,
+  Skeleton,
 } from "./styles";
 
 type ItemProps = {
@@ -15,19 +19,35 @@ type ItemProps = {
   description: string;
 };
 
-type ListProps = {
-  data: ItemProps[];
-};
+export default function List() {
+  const fetch = async () => {
+    const querySnapshot = await getDocs(collection(db, "today_hits"));
 
-export default function List({ data }: ListProps) {
+    const dataList = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return dataList;
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["repoDataToday"],
+    queryFn: () => fetch(),
+  });
+
   const Item = ({ image, title, description }: ItemProps) => (
     <>
-      <Content>
-        <Thumbnail source={{ uri: image }} />
-        <Name>{title}</Name>
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        <Content>
+          <Thumbnail source={{ uri: image }} />
+          <Name>{title}</Name>
 
-        <Description>{description}</Description>
-      </Content>
+          <Description>{description}</Description>
+        </Content>
+      )}
     </>
   );
 
