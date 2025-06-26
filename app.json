@@ -28,7 +28,7 @@
       [
         "expo-audio",
         {
-          "microphonePermission": "Allow this app to access your microphone"
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
         }
       ]
     ],

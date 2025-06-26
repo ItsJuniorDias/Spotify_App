@@ -1,8 +1,6 @@
 import { FlatList } from "react-native";
 
-import card_1 from "../../../../assets/images/card_1.png";
-import card_2 from "../../../../assets/images/card_2.png";
-import card_3 from "../../../../assets/images/card_3.png";
+import { collection, getDocs } from "firebase/firestore";
 
 import {
   Container,
@@ -12,6 +10,8 @@ import {
   Name,
   Description,
 } from "./styles";
+import { useEffect, useState } from "react";
+import { db } from "@/firebaseConfig";
 
 type ItemProps = {
   image: string;
@@ -20,31 +20,27 @@ type ItemProps = {
 };
 
 export default function List() {
-  const DATA = [
-    {
-      id: "1",
-      image: card_1,
-      title: "ArTi Untuk Cinta",
-      description: "Arsy Widianto, Tiar",
-    },
-    {
-      id: "2",
-      image: card_2,
-      title: "Runtuh",
-      description: "Feby Putri, Fiersa B",
-    },
-    {
-      id: "3",
-      image: card_3,
-      title: "Blue Jeans",
-      description: "GANGGA",
-    },
-  ];
+  const [data, setData] = useState<{ id: string }[]>([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const querySnapshot = await getDocs(collection(db, "today_hits"));
+
+      const dataList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      setData(dataList);
+    };
+
+    fetch();
+  }, []);
 
   const Item = ({ image, title, description }: ItemProps) => (
     <>
       <Content>
-        <Thumbnail source={image} />
+        <Thumbnail source={{ uri: image }} />
         <Name>{title}</Name>
 
         <Description>{description}</Description>
@@ -59,7 +55,7 @@ export default function List() {
       </Container>
 
       <FlatList
-        data={DATA}
+        data={data}
         horizontal
         renderItem={({ item }) => (
           <Item
