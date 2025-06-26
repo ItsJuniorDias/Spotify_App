@@ -3,7 +3,8 @@
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Evidence
-![Untitled (6)](https://github.com/user-attachments/assets/bb3e3b52-73d8-48d9-9daa-7d680bbbce2d)
+![Untitled (7)](https://github.com/user-attachments/assets/854814b2-a10e-438e-9785-9a35d51c7c62)
+
 
 
 ## Figma
