@@ -1,7 +1,5 @@
 import { FlatList } from "react-native";
 
-import { collection, getDocs } from "firebase/firestore";
-
 import {
   Container,
   Content,
@@ -10,8 +8,6 @@ import {
   Name,
   Description,
 } from "./styles";
-import { useEffect, useState } from "react";
-import { db } from "@/firebaseConfig";
 
 type ItemProps = {
   image: string;
@@ -19,24 +15,11 @@ type ItemProps = {
   description: string;
 };
 
-export default function List() {
-  const [data, setData] = useState<{ id: string }[]>([]);
+type ListProps = {
+  data: ItemProps[];
+};
 
-  useEffect(() => {
-    const fetch = async () => {
-      const querySnapshot = await getDocs(collection(db, "today_hits"));
-
-      const dataList = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      setData(dataList);
-    };
-
-    fetch();
-  }, []);
-
+export default function List({ data }: ListProps) {
   const Item = ({ image, title, description }: ItemProps) => (
     <>
       <Content>

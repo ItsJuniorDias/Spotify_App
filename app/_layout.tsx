@@ -8,8 +8,12 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { AuthProvider } from "../context/AuthContext";
+
+const queryClient = new QueryClient();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -26,33 +30,40 @@ export default function RootLayout() {
   }
 
   return (
-    <AuthProvider>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <StatusBar style="light" />
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <StatusBar style="light" />
 
-        <Stack>
-          <Stack.Screen name="(app)/index" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="(onboarding)/index"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="(sign-in)/index"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="(sign-up)/index"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="(music)/index" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="(artist)/index"
-            options={{ headerShown: false }}
-          />
+          <Stack>
+            <Stack.Screen name="(app)/index" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="(onboarding)/index"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="(sign-in)/index"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="(sign-up)/index"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="(music)/index"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="(artist)/index"
+              options={{ headerShown: false }}
+            />
 
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-      </ThemeProvider>{" "}
-    </AuthProvider>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </ThemeProvider>{" "}
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }

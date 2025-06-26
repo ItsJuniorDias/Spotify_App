@@ -15,6 +15,7 @@ import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
+import { useQuery } from "@tanstack/react-query";
 
 type ItemProps = {
   id: string;
@@ -24,22 +25,20 @@ type ItemProps = {
 };
 
 export default function SectionArtist() {
-  const [data, setData] = useState<ItemProps[]>([]);
+  const fetch = async () => {
+    const querySnapshot = await getDocs(collection(db, "artist"));
 
-  useEffect(() => {
-    const fetch = async () => {
-      const querySnapshot = await getDocs(collection(db, "artist"));
+    const dataList = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return dataList;
+  };
 
-      const dataList = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      setData(dataList);
-    };
-
-    fetch();
-  }, []);
+  const { data } = useQuery({
+    queryKey: ["repoDataArtist"],
+    queryFn: () => fetch(),
+  });
 
   const Item = ({ image, title, description }: ItemProps) => (
     <>
