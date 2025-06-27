@@ -1,19 +1,24 @@
-import { render } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 
 import SignIn from "./index";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 jest.mock("expo-image", () => ({
   Image: jest.fn(),
 }));
 
+const mockPush = jest.fn();
+
 jest.mock("expo-router", () => ({
   useRouter: jest.fn(() => ({
-    push: jest.fn(),
+    push: mockPush,
   })),
 }));
 
 jest.mock("firebase/auth", () => ({
-  signInWithEmailAndPassword: jest.fn(),
+  signInWithEmailAndPassword: jest.fn(() => ({
+    user: {},
+  })),
   getReactNativePersistence: jest.fn(),
   initializeAuth: jest.fn(),
 }));
@@ -37,5 +42,23 @@ describe("<SignIn />", () => {
     const container = getByTestId("container_testID");
 
     expect(container).toBeTruthy();
+  });
+
+  it("should call function handleSubmit", () => {
+    const { getByTestId } = setup();
+
+    const inputEmail = getByTestId("input_email_testID");
+
+    fireEvent.changeText(inputEmail, "juniordias_@live.com");
+
+    const inputPassword = getByTestId("input_password_testID");
+
+    fireEvent.changeText(inputPassword, "1234567");
+
+    const button = getByTestId("button_signin_testID");
+
+    fireEvent.press(button);
+
+    expect(signInWithEmailAndPassword).toHaveBeenCalled();
   });
 });

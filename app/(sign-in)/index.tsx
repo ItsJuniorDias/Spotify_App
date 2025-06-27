@@ -51,21 +51,25 @@ export default function SignInScreen() {
 
       setLoading(true);
 
-      signInWithEmailAndPassword(auth, value.email, value.password)
-        .then((userCredential) => {
-          const user = userCredential.user;
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          value.email,
+          value.password
+        );
 
-          console.log(user, "USER");
+        const user = userCredential.user;
 
+        if (user) {
           router.push("/(tabs)");
 
           setLoading(false);
-        })
-        .catch((error) => {
-          setLoading(false);
+        }
+      } catch (error) {
+        setLoading(false);
 
-          Alert.alert("Firebase Error", error.message);
-        });
+        Alert.alert("Firebase Error", error.message);
+      }
     }
   };
 
@@ -86,6 +90,7 @@ export default function SignInScreen() {
         </ContentText>
 
         <InputComponent
+          testID="input_email_testID"
           placeholder="Email"
           value={value.email}
           onFocus={() =>
@@ -104,6 +109,7 @@ export default function SignInScreen() {
         />
 
         <InputComponent
+          testID="input_password_testID"
           placeholder="Password"
           value={value.password}
           onFocus={() =>
@@ -125,6 +131,7 @@ export default function SignInScreen() {
         />
 
         <ButtonComponent
+          testID="button_signin_testID"
           title={"Log In"}
           onPress={() => handleSubmit()}
           isLoading={loading}
