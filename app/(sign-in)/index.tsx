@@ -75,7 +75,11 @@ export default function SignInScreen() {
 
   return (
     <Container testID="container_testID">
-      <Header isButton onPress={() => router.back()} />
+      <Header
+        testID="button_goback_testID"
+        isButton
+        onPress={() => router.back()}
+      />
 
       <Body>
         <ContentText>
@@ -137,7 +141,10 @@ export default function SignInScreen() {
           isLoading={loading}
         />
 
-        <ButtonRegister onPress={() => router.push("/(sign-up)")}>
+        <ButtonRegister
+          testID="button_register_testID"
+          onPress={() => router.push("/(sign-up)")}
+        >
           <Description color={colors.white}>
             don't have an account?
             <Description color={colors.yellow}> Register</Description>

@@ -15,6 +15,7 @@ import {
 } from "./styles";
 
 interface HeaderProps {
+  testID?: string;
   title?: string;
   isButton?: boolean;
   onPress?: () => void;
@@ -23,6 +24,7 @@ interface HeaderProps {
 }
 
 export function Header({
+  testID,
   title,
   isButton,
   onPress,
@@ -32,7 +34,7 @@ export function Header({
   return (
     <ContentLogo>
       {isButton ? (
-        <Button onPress={onPress}>
+        <Button testID={testID} onPress={onPress}>
           <SimpleLineIcons name="arrow-left" size={14} color="white" />
         </Button>
       ) : (
