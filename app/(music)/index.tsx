@@ -44,7 +44,7 @@ export default function MusicScreen() {
   }, []);
 
   return (
-    <Container>
+    <Container testID="container_testID">
       <Header isButton onPress={router.back} title="Now Playing" />
 
       <Content>
@@ -74,7 +74,10 @@ export default function MusicScreen() {
           <Icon source={previous} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => player.play()}>
+        <TouchableOpacity
+          testID="button_play_testID"
+          onPress={() => player.play()}
+        >
           <IconPlay source={play} />
         </TouchableOpacity>
 

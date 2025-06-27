@@ -15,31 +15,36 @@ import { TouchableOpacity, View } from "react-native";
 import { colors } from "@/theme";
 import { auth } from "@/firebaseConfig";
 import { signOut } from "firebase/auth";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 
 interface HeaderProps {
   title?: string;
 }
 
 export default function Header({ title }: HeaderProps) {
+  const router = useRouter();
+
   const handleSignOut = async () => {
-    signOut(auth)
-      .then(() => {
-        router.push("/(sign-in)");
-      })
-      .catch((error) => {
-        console.error("Error signing out:", error);
-      });
+    try {
+      await signOut(auth);
+
+      router.push("/(sign-in)");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
 
   return (
-    <Container>
+    <Container testID="container_testID">
       <Content>
         <Row>
           <View />
           <TextCustom title="Perfil" fontFamily="bold" fontSize={24} />
 
-          <TouchableOpacity onPress={() => handleSignOut()}>
+          <TouchableOpacity
+            testID="button_testID"
+            onPress={() => handleSignOut()}
+          >
             <MaterialIcons name="logout" size={24} color={colors.white} />
           </TouchableOpacity>
         </Row>

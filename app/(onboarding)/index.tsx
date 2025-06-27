@@ -1,9 +1,11 @@
-import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
-
+import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import image_body from "../../assets/images/image_body.png";
+
+import { ButtonComponent, Header } from "@/components";
+import { Redirect, useRouter } from "expo-router";
+import { useAuth } from "@/context/AuthContext";
 
 import {
   Container,
@@ -13,21 +15,18 @@ import {
   Title,
   Description,
 } from "./styles";
-import { ButtonComponent, Header } from "@/components";
-import { Redirect, useRouter } from "expo-router";
-import { useAuth } from "@/context/AuthContext";
 
 export default function OnboardingScreen() {
   const { user } = useAuth();
 
-  const navigation = useRouter();
+  const router = useRouter();
 
   if (user) {
     return <Redirect href="/(tabs)" />;
   }
 
   return (
-    <Container>
+    <Container testID="container_testID">
       <Header />
 
       <ContentBody>
@@ -53,7 +52,8 @@ export default function OnboardingScreen() {
           </Description>
 
           <ButtonComponent
-            onPress={() => navigation.push("/(sign-in)")}
+            testID="button_testID"
+            onPress={() => router.push("/(sign-in)")}
             title="Get started"
           />
         </Footer>

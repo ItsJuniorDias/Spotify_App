@@ -3,14 +3,20 @@ import { Button, TextButton } from "./styles";
 import { colors } from "@/theme";
 
 interface ButtonProps {
+  testID?: string;
   title: string;
   onPress: () => void;
   isLoading?: boolean;
 }
 
-export function ButtonComponent({ title, onPress, isLoading }: ButtonProps) {
+export function ButtonComponent({
+  testID,
+  title,
+  onPress,
+  isLoading,
+}: ButtonProps) {
   return (
-    <Button onPress={onPress}>
+    <Button testID={testID} onPress={onPress}>
       {isLoading ? (
         <ActivityIndicator size={16} color={colors.black} />
       ) : (
