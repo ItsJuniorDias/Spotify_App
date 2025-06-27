@@ -1,6 +1,6 @@
 import { FlatList, TouchableOpacity } from "react-native";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
 import { useQuery } from "@tanstack/react-query";
@@ -24,10 +24,12 @@ type ItemProps = {
 };
 
 export default function SectionArtist() {
+  const router = useRouter();
+
   const fetch = async () => {
     const querySnapshot = await getDocs(collection(db, "artist"));
 
-    const dataList = querySnapshot.docs.map((doc) => ({
+    const dataList = (querySnapshot?.docs ?? []).map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
@@ -42,7 +44,7 @@ export default function SectionArtist() {
 
   const Item = ({ image, title, description }: ItemProps) => (
     <>
-      <Content onPress={() => router.push("/(artist)")}>
+      <Content testID="button_testID" onPress={() => router.push("/(artist)")}>
         <ContentThumbnail>
           <Thumbnail source={image} />
 

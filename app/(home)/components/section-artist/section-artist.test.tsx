@@ -1,10 +1,16 @@
 import { fireEvent, render } from "@testing-library/react-native";
 import { useQuery } from "@tanstack/react-query";
-import List from "./list";
+import SectionArtist from "./section-artist";
 import { getDocs } from "firebase/firestore";
 
 jest.mock("expo-image", () => ({
   Image: jest.fn(),
+}));
+
+jest.mock("expo-router", () => ({
+  useRouter: jest.fn(() => ({
+    push: jest.fn(),
+  })),
 }));
 
 jest.mock("firebase/firestore", () => ({
@@ -40,8 +46,8 @@ jest.mock("@tanstack/react-query", () => ({
   })),
 }));
 
-describe("<List />", () => {
-  const setup = () => render(<List />);
+describe("<SectionArtist />", () => {
+  const setup = () => render(<SectionArtist />);
 
   it("should call function onPress", () => {
     const { getByTestId } = setup();
