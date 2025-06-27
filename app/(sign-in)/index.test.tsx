@@ -1,6 +1,6 @@
-import { fireEvent, render } from "@testing-library/react-native";
-import { useRouter } from "expo-router";
-import Header from "./header";
+import { render } from "@testing-library/react-native";
+
+import SignIn from "./index";
 
 jest.mock("expo-image", () => ({
   Image: jest.fn(),
@@ -12,25 +12,24 @@ jest.mock("expo-router", () => ({
   })),
 }));
 
-jest.mock("firebase/app", () => ({
-  initializeApp: jest.fn(),
-}));
-
 jest.mock("firebase/auth", () => ({
-  onAuthStateChanged: jest.fn(),
+  signInWithEmailAndPassword: jest.fn(),
   getReactNativePersistence: jest.fn(),
   initializeAuth: jest.fn(),
-  signOut: jest.fn(),
 }));
 
 jest.mock("firebase/firestore", () => ({
   getFirestore: jest.fn(),
 }));
 
+jest.mock("firebase/app", () => ({
+  initializeApp: jest.fn(),
+}));
+
 jest.mock("@react-native-async-storage/async-storage", () => jest.fn());
 
-describe("<Header />", () => {
-  const setup = () => render(<Header />);
+describe("<SignIn />", () => {
+  const setup = () => render(<SignIn />);
 
   it("should render screen container", () => {
     const { getByTestId } = setup();
@@ -38,13 +37,5 @@ describe("<Header />", () => {
     const container = getByTestId("container_testID");
 
     expect(container).toBeTruthy();
-  });
-
-  it("should call function handleSignOut", () => {
-    const { getByTestId } = setup();
-
-    const button = getByTestId("button_testID");
-
-    fireEvent.press(button);
   });
 });

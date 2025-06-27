@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { useRouter } from "expo-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
-
 import { auth } from "../../firebaseConfig";
 
 import { ButtonComponent, Header, InputComponent } from "@/components";
+
+import { Alert, TouchableOpacity } from "react-native";
+
+import { colors } from "@/theme";
 
 import {
   Container,
@@ -13,14 +17,6 @@ import {
   ContentText,
   ButtonRegister,
 } from "./styles";
-import {
-  ActivityIndicator,
-  ActivityIndicatorComponent,
-  Alert,
-  TouchableOpacity,
-} from "react-native";
-import { useEffect, useState } from "react";
-import { colors } from "@/theme";
 
 export default function SignInScreen() {
   const [value, onChangeValue] = useState({
@@ -74,7 +70,7 @@ export default function SignInScreen() {
   };
 
   return (
-    <Container>
+    <Container testID="container_testID">
       <Header isButton onPress={() => router.back()} />
 
       <Body>

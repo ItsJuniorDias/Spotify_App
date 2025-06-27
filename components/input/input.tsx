@@ -6,7 +6,8 @@ import icon_hide from "../../assets/images/icon_hide.png";
 
 import { Container, Input, ErrorMessage, Icon } from "./styles";
 
-interface ButtonProps {
+interface InputProps {
+  testID?: string;
   placeholder: string;
   value: string;
   onChangeText: (item: string) => void;
@@ -18,6 +19,7 @@ interface ButtonProps {
 }
 
 export function InputComponent({
+  testID,
   onChangeText,
   placeholder,
   value,
@@ -26,11 +28,12 @@ export function InputComponent({
   setSecureTextEntry,
   onFocus,
   isError,
-}: ButtonProps) {
+}: InputProps) {
   return (
     <>
-      <Container isError={isError}>
+      <Container testID="container_input_testID" isError={isError}>
         <Input
+          testID={testID}
           placeholder={placeholder}
           onChangeText={onChangeText}
           value={value}
@@ -42,6 +45,7 @@ export function InputComponent({
 
         {isButtonHide && (
           <TouchableOpacity
+            testID="button_input_testID"
             onPress={() => setSecureTextEntry((prevState) => !prevState)}
           >
             <Icon source={icon_hide} />
@@ -49,7 +53,9 @@ export function InputComponent({
         )}
       </Container>
 
-      {isError && <ErrorMessage>* Campo obrigatório</ErrorMessage>}
+      {isError && (
+        <ErrorMessage testID="error_testID">* Campo obrigatório</ErrorMessage>
+      )}
     </>
   );
 }
