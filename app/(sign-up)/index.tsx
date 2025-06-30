@@ -107,8 +107,12 @@ export default function SignInScreen() {
   };
 
   return (
-    <Container>
-      <Header isButton onPress={() => router.back()} />
+    <Container testID="container_testID">
+      <Header
+        testID="button_goback_testID"
+        isButton
+        onPress={() => router.back()}
+      />
 
       <Body>
         <ContentText>
@@ -123,6 +127,7 @@ export default function SignInScreen() {
         </ContentText>
 
         <InputComponent
+          testID="input_name_testID"
           placeholder="Name"
           value={value.name}
           onFocus={() =>
@@ -141,6 +146,7 @@ export default function SignInScreen() {
         />
 
         <InputComponent
+          testID="input_email_testID"
           placeholder="Email"
           value={value.email}
           onFocus={() =>
@@ -159,6 +165,7 @@ export default function SignInScreen() {
         />
 
         <InputComponent
+          testID="input_password_testID"
           placeholder="Password"
           value={value.password}
           onFocus={() =>
@@ -180,6 +187,7 @@ export default function SignInScreen() {
         />
 
         <InputComponent
+          testID="input_repeat_password_testID"
           placeholder="Repeat Password"
           value={value.repeatPassword}
           onFocus={() =>
@@ -201,12 +209,16 @@ export default function SignInScreen() {
         />
 
         <ButtonComponent
+          testID="button_signup_testID"
           title={"Register"}
           onPress={() => handleSubmit()}
           isLoading={loading}
         />
 
-        <ButtonRegister onPress={() => router.back()}>
+        <ButtonRegister
+          testID="button_signin_testID"
+          onPress={() => router.back()}
+        >
           <Description color={colors.white}>
             have an account?
             <Description color={colors.yellow}> Log In</Description>
