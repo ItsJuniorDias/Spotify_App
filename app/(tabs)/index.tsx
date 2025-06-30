@@ -7,7 +7,7 @@ import { Container } from "./styles";
 
 export default function HomeScreen() {
   return (
-    <Container showsVerticalScrollIndicator={false}>
+    <Container testID="container_testID" showsVerticalScrollIndicator={false}>
       <Header onPressSearch={() => {}} onPressSettings={() => {}} />
 
       <Card />

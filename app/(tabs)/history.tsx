@@ -1,6 +1,3 @@
-import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
-
 import List from "../(history)/components/list/list";
 
 import { Header } from "@/components";

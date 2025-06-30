@@ -19,11 +19,13 @@ const MAPPING = {
 } as IconMapping;
 
 export function IconSymbol({
+  testID,
   name,
   size = 24,
   color,
   style,
 }: {
+  testID?: string;
   name: IconSymbolName;
   size?: number;
   color: string | OpaqueColorValue;
@@ -32,6 +34,7 @@ export function IconSymbol({
 }) {
   return (
     <MaterialIcons
+      testID={testID}
       color={color}
       size={size}
       name={MAPPING[name]}
