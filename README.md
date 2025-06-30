@@ -5,10 +5,11 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 ## Evidence
 ![Untitled (7)](https://github.com/user-attachments/assets/854814b2-a10e-438e-9785-9a35d51c7c62)
 
-
-
 ## Figma
 - https://www.figma.com/design/1qLZPabuStVSqQJ4ooe9K7/Spotify-Redesign-%7C-UI-Mobile-Redesign--Community-?node-id=36-769&p=f&t=bNwFxmkjEEUhaO5o-0
+
+ ## Unit Test
+![8d66f12e-b1e5-4075-b113-6a3fb3dc92e9](https://github.com/user-attachments/assets/c4ffc9f0-80bb-4a59-b571-27d0bcda6bea)
 
 ## Get started
 
