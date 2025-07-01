@@ -8,6 +8,8 @@ module.exports = {
     "/eslint.config.js",
     "/jest.config.js",
     "/metro.config.js",
+    "/scripts/reset-project.js",
+    "/constants/Colors.ts",
   ],
   collectCoverage: true,
   collectCoverageFrom: [
