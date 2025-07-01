@@ -5,10 +5,11 @@ import { Container } from "./styles";
 import { colors } from "@/theme";
 
 interface ProgressBarProps {
+  testID?: string;
   progress: number;
 }
 
-export function ProgressBar({ progress }: ProgressBarProps) {
+export function ProgressBar({ testID, progress }: ProgressBarProps) {
   const animation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export function ProgressBar({ progress }: ProgressBarProps) {
   });
 
   return (
-    <Container>
+    <Container testID={testID}>
       <View style={styles.container}>
         <View style={styles.track}>
           <Animated.View
