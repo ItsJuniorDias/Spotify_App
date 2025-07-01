@@ -4,6 +4,11 @@ module.exports = {
     "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg)",
     "_layout",
   ],
+  coveragePathIgnorePatterns: [
+    "/eslint.config.js",
+    "/jest.config.js",
+    "/metro.config.js",
+  ],
   collectCoverage: true,
   collectCoverageFrom: [
     "**/*.{ts,tsx,js,jsx}",
