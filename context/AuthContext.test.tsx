@@ -1,9 +1,10 @@
 import { renderHook } from "@testing-library/react";
+import { render } from "@testing-library/react-native";
 
 import { AuthProvider, useAuth } from "./AuthContext";
 
 jest.mock("firebase/auth", () => ({
-  onAuthStateChanged: jest.fn(),
+  onAuthStateChanged: jest.fn(() => jest.fn()),
   initializeAuth: jest.fn(),
   getReactNativePersistence: jest.fn(),
 }));
@@ -28,8 +29,14 @@ describe("useAuth", () => {
   it("Behavior render hook useAuth", () => {
     const { result } = renderHook(() => useAuth());
 
-    console.log(result.current, "CURRENT");
+    expect(result.current.user).toBe(null);
+  });
 
-    // expect(result.current.count).toBe(1);
+  it("Behavior render hook useAuth", () => {
+    render(
+      <AuthProvider>
+        <></>
+      </AuthProvider>
+    );
   });
 });

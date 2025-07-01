@@ -20,4 +20,6 @@ module.exports = {
     "!**/expo-env.d.ts",
     "!**/.expo/**",
   ],
+  setupFiles: ["<rootDir>/jest.setup.js"],
+  testEnvironment: "jsdom",
 };

@@ -8,28 +8,22 @@ jest.mock("expo-router", () => ({
   })),
 }));
 
-jest.useFakeTimers();
-
 describe("<SplashScreen />", () => {
   const setup = () => render(<SplashScreen />);
 
-  it("should render screen container", () => {
+  it("should render screen container", async () => {
     const { getByTestId } = setup();
 
     const container = getByTestId("container_testID");
 
-    jest.runAllTimers();
-
     expect(container).toBeTruthy();
-  });
+  }, 1000);
 
-  it("should render screen image logo ", () => {
+  it("should render screen image logo ", async () => {
     const { getByTestId } = setup();
 
     const container = getByTestId("image_testID");
 
-    jest.runAllTimers();
-
     expect(container).toBeTruthy();
-  });
+  }, 1000);
 });
